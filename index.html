@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="msapplication-tap-highlight" content="no">
+  <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DESARROLLO DE LA PRUEBA DE CALIDAD DEL SOFTWARE</title>
+  <link rel="icon" type="image/png" href="img/b48551b216a1e19ace7f9f12ae069ee0-silueta-del-perro-9.png" />
+  <link rel="stylesheet" type="text/css" href="css/main.css">
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+  <script type="text/javascript" src="js/log.js"></script>
+  <script type="text/javascript" src="js/script2.js"></script>
+  <script type="text/javascript" src="js/carga.js"></script>
+</head>
+
+<body>
+  <!--navs-->
+  <div class="loader-page"></div>
+  <nav class="navbar navbar-light bg-light fixed-top">
+    <a class="navbar-brand" href="#">
+      <img src="img/b48551b216a1e19ace7f9f12ae069ee0-silueta-del-perro-9.png" width="30" height="30" class="d-inline-block align-top"
+        alt=""> Calidad del Software
+    </a>
+  </nav>
+  <br>
+  <br>
+  <hr>
+
+  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+   build 1234 v0.12.34
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+      <br>
+    </button>
+  </div>
+
+  <nav>
+    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+      <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home"
+        aria-selected="true">MÉTRICAS</a>
+      <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile"
+        aria-selected="false">CALIDAD</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="tab-content" id="nav-tabContent">
+      <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+        <br>
+        <!--Parte de procedimiento a seguir en las metricas -->
+        <!--contenido central-->
+        <div class="container-left">
+          <div class="row content-md-left">
+
+            <div class="col-md-auto">
+              <form autocomplete="off" class="needs-validation" novalidate>
+                <div class="form-group">
+                  <label for="ps">Tamaño de linea de codigo</label>
+                  <input type="number" class="form-control val1" id="ps" placeholder="Tamaño de linea de codigo" required>
+                </div>
+                <div class="form-group">
+                  <label for="msd">Cantidad de pasos</label>
+                  <input type="number" class="form-control" id="msd" placeholder="Cantidad de pasos" required>
+                </div>
+                <div class="form-group">
+                  <label for="cldc">Costo de linea de codigo</label>
+                  <input type="number" class="form-control" id="cldc" placeholder="Costo de linea de codigo" required>
+                </div>
+
+                <!--fases de prueba-->
+
+
+                <div class="form-group bg-light text-dark">
+                  <from>
+
+                    <!-- Trigger the modal with a button -->
+                    <input type="hidden" id="ListaPro" name="ListaPro" value="" required />
+                    <table id="TablaPro" class="table">
+                      <thead>
+                        <tr>
+                          <th>Error</th>
+                          <th>Etapa</th>
+                          <th># LDC</th>
+                          <th>IF</th>
+                          <th>C. de defectos</th>
+                          <th>Acción</th>
+                        </tr>
+                      </thead>
+                      <tbody id="ProSelected">
+                        <!--Ingreso un id al tbody-->
+                        <tr>
+
+                        </tr>
+                      </tbody>
+                      <tfoot>
+                        <tr>
+                          <td><strong>IF</strong> Total <br> <strong>CD</strong> total</td>
+                          <td>&nbsp;</td>
+                          <td>&nbsp;</td>
+                          <td>
+                            <span id="total">0</span>
+                            <br>
+                            <span id="result">0</span> 
+                            <input class="form-control" type="hidden" id="total_final" name="total_final" value="0" readonly />
+                          </td>
+                          <td>&nbsp;</td>
+                        </tr>
+                      </tfoot>
+                    </table>
+
+                    <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#myModal">Agregar</button>
+                    <div class="alert alert-info alert-dismissible fade show" role="alert">
+                      Presione el boton para agregar fases
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        <br>
+                      </button>
+                    </div>
+                  </from>
+                  <label for="if">IF</label>
+                  <input type="number" id="ifn"class="form-control"/>
+                  <label for="cdt">Costo de los defectos</label>
+                  <input type="number" id="cdt" class="form-control" />
+                </div>
+                <hr>
+                <button type="button" onclick="proceso()" data-target=".bd-example-modal-lg" class="btn btn-primary" data-toggle="modal"
+                  id="b1">Resultado</button>
+            </div>
+            <hr>
+            </form>
+            <hr>
+            <!--TERMINA-->
+          </div>
+        </div>
+      </div>
+      <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+        <div class="container-left">
+          <div class="row">
+            <div class="col-md-3">
+              <form autocomplete="off">
+                <div class="form-row">
+                  <div class="col-md-auto">
+                    <label for="tmdf">Fallos</label>
+                    <input type="number" class="form-control" id="tmdf" placeholder="tmdf" value="" required>
+                    <label for="tmdr">Tiempo de solución</label>
+                    <input type="number" class="form-control" id="tmdr" placeholder="tmdr" value="" required>
+
+                    <label for="tmp">Tiempo del sistemas</label>
+                    <input type="number" class="form-control" id="tmp" placeholder="Tiempo medio" required>
+                  </div>
+                </div>
+                <br>
+                <hr>
+                <button class="btn btn-primary" id="b2" type="button" onclick="respuesta()" data-toggle="modal" data-target="#exampleModalCenter">Resultado</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  <!--modal 1-->
+  <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Resultados</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="c1">
+          <div class="alert alert-dark">
+
+
+            <div>IF = Ws (Si / Ei) + Wm (Mi / Ei) + Wt (Ti / Ei)
+              <br>
+              <strong>ÍNDICE ACUMULATIVO DE ERROR (IF): </strong>
+              <span id="acum"></span>
+            </div>
+            <br>
+            <hr>
+            <div>IE = SUMA (1IF+2IF+3IF+…nIF) / PS
+              <br>
+              <strong>ÍNDICE DE ERROR (IE): </strong>
+              <span id="ie">0</span>%</p>
+            </div>
+            <hr>
+            <div>Costo = (Total de los defectos) x (% Costo Según Etapa) x (Costo LDC)
+              <br>
+              <strong>COSTO DE LOS DEFECTOS: </strong>
+              $
+              <span id="cdd"></span>
+            </div>
+            <hr>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="window.location.reload()">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--termina modal 1-->
+
+  <!-- Modal 2 -->
+  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Resultado</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="c2">
+            <div class="alert alert-dark" role="alert">
+              <p>
+                <strong>RESPUESTAS</strong>
+                <hr>
+                <br>
+                <strong>TMEF =TIEMPO MEDIO DE FALLOS (TMDF) + TIEMPO MEDIO DE REPARACIÓN (TMDR)</strong>
+                <br>
+                <strong>TMEF</strong>=
+                <span id="m1"></span>/
+                <span id="m2"></span>+
+                <span id="m3"></span>/
+                <span id="m4"></span>
+                <br> TMEF:
+                <span id="r1"></span>
+                <hr>
+                <strong>FIABILIDAD = (1 – TMEF) * 100%</strong>
+                <br>
+                <strong>FIABILIDAD</strong>= (1-
+                <span id="m5"></span>)*100%
+                <br> Fiabilidad:
+                <span id="r2"></span>%
+                <hr>
+                <strong>DISPONIBILIDAD = (( TMDF / (TMDF + TMDR) ) * 100%</strong>
+                <br>
+                <strong>DISPONIBILIDAD</strong>= (
+                <span id="m6"></span>/(
+                <span id="m7"></span>+
+                <span id="m8"></span> ))*100%
+                <br> DISPONIBILIDAD:
+                <span id='r3'></span>%
+
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="window.location.reload()">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--modal 3 calculo de errores-->
+  <div class="modal fade" id="myModal" role="dialog">
+
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h6 class="modal-title">Agregar ERROR</h6>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label>Errores</label>
+            <select class="selectpicker form-control" id="pro_id" name="pro_id" data-width='100%'>
+              <option value="1">Error leve</option>
+              <option value="2">Error Moderado</option>
+              <option value="3">Error grave</option>
+            </select>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <!--Uso la funcion onclick para llamar a la funcion en javascript-->
+          <button type="button" onclick="agregarProducto()" class="btn btn-default" data-dismiss="modal">Agregar</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <script type="text/javascript" src="js/script.js"></script>
+
+
+</body>
+
+</html>
